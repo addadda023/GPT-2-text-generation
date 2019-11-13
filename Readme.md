@@ -43,6 +43,11 @@ Use the accompanying colab [notebook](https://github.com/addadda023/GPT-2-text-g
 * Generate texts.
 * Save the TensorFlow checkpoint to Google drive and download locally. This is needed to deploy the model.
 
+Notice the average loss of the model when training. It is easy to overfit. You can stop the training once you start to see it's decreasing slowly. 
+
+## Making GPT-2 App
+
+
 
 
 
