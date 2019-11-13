@@ -75,7 +75,7 @@ If it runs successfully you can then visit/curl `http://0.0.0.0:8080` to get gen
 
 You want to deploy the image in the cloud, but you must first upload the image to [container registry](https://console.cloud.google.com/gcr). 
 
-Tag the image and upload it to the Google Container Registry (note, this will take awhile due to the image size!). Also note you have to setup your credentials which involves steps you will be notified when you execute below commands. What is PROJECT-ID? It's the name of the project you will create in GCR before uploading the image.
+Tag the image and upload it to the Google Container Registry (note, this will take awhile due to the image size!). Also note you have to setup your credentials which involves steps you will be notified when you execute below commands. **What is PROJECT-ID?** It's the name of the project you will create in GCR before uploading the image.
 
 ```
 docker tag gpt2 gcr.io/[PROJECT-ID]/gpt2
@@ -90,5 +90,10 @@ The end result should look like this:
 
 Once the image is uploaded you can head to [Google Cloud Console](https://console.cloud.google.com/run?project=yta-gpt2&folder=&organizationId=) to deploy it. Click on **Create Service** and follow the instructions. **Remember to set Memory Allocated to 2 GB and Maximum Requests Per Container to 1!**. You should see a success prompt shortly. You can explore the console further yourself.
 
+![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/Deployed_container_sample.png)
 
+Congratulations! You just deployed the model. 
 
+### Interacting with the api
+
+The api serves GET & POST requests over HTTP and returns a JSON object with a text attribute that contains the generated text. Say the cloud run app url is 
