@@ -109,7 +109,7 @@ req = requests.post('http://comment-generator.run.app',
 text = req.json()['text']
 print(text)
 ```
-Feel free to modify the `app_ui.html` file provided in the docker repository to suit your needs. It utilizes AJAX POST requests via jQuery to retrieve the generated text and parse the data for display.
+Feel free to modify the `app_ui.html` file provided in the docker repository to suit your needs. It utilizes AJAX POST requests via jQuery to retrieve the generated text and parse the data for display. Check my example [here](http://addadda023.github.io/).
 
 ## Some notes
 
