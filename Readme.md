@@ -43,10 +43,13 @@ Use the accompanying colab [notebook](https://github.com/addadda023/GPT-2-text-g
 * Generate texts.
 * Save the TensorFlow checkpoint to Google drive and download locally. This is needed to deploy the model.
 
-Notice the average loss of the model when training. It is easy to overfit. You can stop the training once you start to see it's decreasing slowly. 
+Notice the average loss of the model when training. It is easy to **overfit**. You can stop the training once you start to see it's decreasing slowly. 
 
 ## Making GPT-2 App
 
+You have fine tuned GPT-2 using your text. That's great! But how do to host/deploy it? Many AI tutorials often show how to deploy a small model to a web service by using [Flask](https://www.fullstackpython.com/flask.html). The problem with GPT-2 is that it’s such a huge model that most conventional wisdom won't work well to get a performant app. Even if you do get it to run fast (e.g. by running the app on a GPU), it won’t be cheap, specially if there is a surge of requests.
+
+One of the options for deployment is Google Cloud Run. Its a managed compute platform that automatically scales stateless containers. Cloud Run only charges for compute used *(effectively free)* and can scale indefinitely if there’s a traffic surge. Max Woolf has created a nice [package](https://github.com/minimaxir/gpt-2-cloud-run) to get started with this really easily. The end result is an app that can be used easily and cost-effectively to allow others to play with a finetuned GPT-2 model on another dataset, and allow programmatic access to the generated text. Check my sample [here](https://addadda023.github.io/). Note that the deployed api itself doesn't provide a HTML frontend, but there are frontend templates to help you with that.
 
 
 
