@@ -53,7 +53,7 @@ One of the options for deployment is Google Cloud Run. Its a managed compute pla
 
 ### Building a docker container
 
-Since Cloud Run is stateless without access to local storage, you must bundle the model within the container. First, clone the [gpt-2-cloud-run]((https://github.com/minimaxir/gpt-2-cloud-run) repo and copy the downloaded GPT-2 model into the folder (the model should be in the form of the folder hierarchy `/checkpoint/run1`. You can also clone this repo and find the same files in gpt-2-cloud-run folders.
+Since Cloud Run is stateless without access to local storage, you must bundle the model within the container. First, clone the [gpt-2-cloud-run](https://github.com/minimaxir/gpt-2-cloud-run) repo and copy the downloaded GPT-2 model into the folder (the model should be in the form of the folder hierarchy `/checkpoint/run1`. You can also clone this repo and find the same files in gpt-2-cloud-run folders.
 
 **Before building the image**, edit the the dockerfile to specify which tensorflow version you want to install. It is recommended to use the same version you used for finetuning. You can find the version in colab using `gpt2.tf.__version__`
 
