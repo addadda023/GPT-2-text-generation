@@ -10,7 +10,7 @@ I am using Max Woolf's [gpt-2-simple](https://github.com/minimaxir/gpt-2-simple)
 
 ## Where to get text data? 
 
-First of all we need text data to finetuning GPT-2 for our application. I decided to use Reddit comments hosted in BigQuery's reddit comments [database](https://console.cloud.google.com/bigquery?utm_source=bqui&utm_medium=link&utm_campaign=classic&project=charismatic-sum-134503). For fun, I wanted to generate YTA comments in [AITA](https://www.reddit.com/r/AmItheAsshole/) subreddit. You may have to setup your Google cloud credentials before you can begin querying. 
+First of all we need text data to finetuning GPT-2 for our application. It's up to you to look for data sources. Perhaps you already have a corpus of text? I decided to use Reddit comments hosted in BigQuery's reddit comments [database](https://console.cloud.google.com/bigquery?utm_source=bqui&utm_medium=link&utm_campaign=classic&project=charismatic-sum-134503). For fun, I wanted to generate YTA comments in [AITA](https://www.reddit.com/r/AmItheAsshole/) subreddit. You may have to setup your Google cloud credentials before you can begin querying. 
 
 This is an example script to get comments from the subreddit. Feel free to change this to your needs. 
 
