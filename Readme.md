@@ -34,7 +34,7 @@ You can save the data set locally or to your google drive.
 
 ## GPT-2 fine-tuning
 
-Use the accompanying colab [notebook](https://github.com/addadda023/GPT-2-text-generation/blob/master/Train_a_GPT_2_Text_Generating_Model.ipynb) to understand more. In summary:
+Use the accompanying colab [notebook](https://github.com/addadda023/GPT-2-text-generation/blob/master/Train_a_GPT_2_Text_Generating_Model.ipynb) in this repository to understand more. In summary:
 
 * Use gpt-2-simple to load gpt-2.
 * Load the input text file.
@@ -51,7 +51,26 @@ You have fine tuned GPT-2 using your text. That's great! But how do to host/depl
 
 One of the options for deployment is Google Cloud Run. Its a managed compute platform that automatically scales stateless containers. Cloud Run only charges for compute used *(effectively free)* and can scale indefinitely if there’s a traffic surge. Max Woolf has created a nice [package](https://github.com/minimaxir/gpt-2-cloud-run) to get started with this really easily. The end result is an app that can be used easily and cost-effectively to allow others to play with a finetuned GPT-2 model on another dataset, and allow programmatic access to the generated text. Check my sample [here](https://addadda023.github.io/). Note that the deployed api itself doesn't provide a HTML frontend, but there are frontend templates to help you with that.
 
+### Building a docker container
 
+Since Cloud Run is stateless without access to local storage, you must bundle the model within the container. First, clone the [gpt-2-cloud-run]((https://github.com/minimaxir/gpt-2-cloud-run) repo and copy the downloaded GPT-2 model into the folder (the model should be in the form of the folder hierarchy `/checkpoint/run1`. 
 
+Before building the image, edit the the dockerfile to specify which tensorflow version you want to install. It is recommended to use the same version you used for finetuning. You can find the version in colab using `gpt2.tf.__version__`
+
+`
+RUN pip3 --no-cache-dir install tensorflow==1.15 gpt-2-simple starlette uvicorn ujson
+`
+
+Then build the image:
+
+`
+docker build . -t gpt2
+`
+
+If you want to test the image locally with the same specs as Cloud Run, you can run:
+
+`
+docker run -p 8080:8080 --memory="2g" --cpus="1" gpt2
+`
 
 
