@@ -53,24 +53,35 @@ One of the options for deployment is Google Cloud Run. Its a managed compute pla
 
 ### Building a docker container
 
-Since Cloud Run is stateless without access to local storage, you must bundle the model within the container. First, clone the [gpt-2-cloud-run]((https://github.com/minimaxir/gpt-2-cloud-run) repo and copy the downloaded GPT-2 model into the folder (the model should be in the form of the folder hierarchy `/checkpoint/run1`. 
+Since Cloud Run is stateless without access to local storage, you must bundle the model within the container. First, clone the [gpt-2-cloud-run]((https://github.com/minimaxir/gpt-2-cloud-run) repo and copy the downloaded GPT-2 model into the folder (the model should be in the form of the folder hierarchy `/checkpoint/run1`. You can also clone this repo and find the same files in gpt-2-cloud-run folders.
 
-Before building the image, edit the the dockerfile to specify which tensorflow version you want to install. It is recommended to use the same version you used for finetuning. You can find the version in colab using `gpt2.tf.__version__`
-
-`
-RUN pip3 --no-cache-dir install tensorflow==1.15 gpt-2-simple starlette uvicorn ujson
-`
+**Before building the image**, edit the the dockerfile to specify which tensorflow version you want to install. It is recommended to use the same version you used for finetuning. You can find the version in colab using `gpt2.tf.__version__`
 
 Then build the image:
 
-`
+```
 docker build . -t gpt2
-`
+```
 
 If you want to test the image locally with the same specs as Cloud Run, you can run:
 
-`
+```
 docker run -p 8080:8080 --memory="2g" --cpus="1" gpt2
-`
+```
 
+If it runs successfully you can then visit/curl `http://0.0.0.0:8080` to get generated text!
 
+### Deploying the image to Google Cloud Run
+
+Great! These steps will tell you how to deploy your docker image in the cloud. 
+
+Tag the image and upload it to the Google Container Registry (note, this will take awhile due to the image size!). Also note you have to setup your credentials which involves steps you will be notified when you execute below commands. What is PROJECT-ID? It's the name of the project you will create in GCR before uploading the image.
+
+```
+docker tag gpt2 gcr.io/[PROJECT-ID]/gpt2
+docker push gcr.io/[PROJECT-ID]/gpt2
+```
+
+The end result should look like this:
+
+![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcr_sample.png)
