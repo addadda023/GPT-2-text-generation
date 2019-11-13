@@ -71,9 +71,9 @@ docker run -p 8080:8080 --memory="2g" --cpus="1" gpt2
 
 If it runs successfully you can then visit/curl `http://0.0.0.0:8080` to get generated text!
 
-### Deploying the image to Google Cloud Run
+### Upload the image to Google Container Registry
 
-Great! These steps will tell you how to deploy your docker image in the cloud. 
+You want to deploy the image in the cloud, but you must first upload the image to [container registry](https://console.cloud.google.com/gcr). 
 
 Tag the image and upload it to the Google Container Registry (note, this will take awhile due to the image size!). Also note you have to setup your credentials which involves steps you will be notified when you execute below commands. What is PROJECT-ID? It's the name of the project you will create in GCR before uploading the image.
 
@@ -85,3 +85,8 @@ docker push gcr.io/[PROJECT-ID]/gpt2
 The end result should look like this:
 
 ![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcr_sample.png)
+
+### Deploy the container
+
+Once the image is uploaded you can head to [Google Cloud Console](https://console.cloud.google.com/run?project=yta-gpt2&folder=&organizationId=) to deploy it. Click on **Create Service** and follow the instructions. **Remember to set Memory Allocated to 2 GB and Maximum Requests Per Container to 1!**
+
