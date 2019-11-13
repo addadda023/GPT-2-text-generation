@@ -30,7 +30,7 @@ LIMIT
 
 You can save the data set locally or to your google drive.
 
-![gbq_image](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcp_save_data.PNG)
+![gbq_image](/images/gcp_save_data.PNG)
 
 ## GPT-2 fine-tuning
 
