@@ -12,7 +12,7 @@ I am using Max Woolf's [gpt-2-simple](https://github.com/minimaxir/gpt-2-simple)
 
 First of all we need text data to finetuning GPT-2 for our application. I decided to use Reddit comments hosted in BigQuery's reddit comments [database](https://console.cloud.google.com/bigquery?utm_source=bqui&utm_medium=link&utm_campaign=classic&project=charismatic-sum-134503). For fun, I wanted to generate YTA comments in [AITA](https://www.reddit.com/r/AmItheAsshole/) subreddit. You may have to setup your Google cloud credentials before you can begin querying. 
 
-This is an example script to get comments from the subreddit. Feel free to change this to your needs. You can save the 
+This is an example script to get comments from the subreddit. Feel free to change this to your needs. 
 
 ```
 #standardSQL
@@ -27,3 +27,23 @@ WHERE
 LIMIT
   100
 ```
+
+You can save the data set locally or to your google drive.
+
+![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcp_save_data.PNG)
+
+## GPT-2 fine-tuning
+
+Use the accompanying colab [notebook](https://github.com/addadda023/GPT-2-text-generation/blob/master/Train_a_GPT_2_Text_Generating_Model.ipynb) to understand more. In summary:
+
+* Use gpt-2-simple to load gpt-2.
+* Load the input text file.
+* Specify tuning parameters.
+* Train and save the model.
+* Generate texts.
+* Save the TensorFlow checkpoint to Google drive and download locally. This is needed to deploy the model.
+
+
+
+
+
