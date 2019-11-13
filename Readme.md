@@ -30,7 +30,7 @@ LIMIT
 
 You can save the data set locally or to your google drive.
 
-![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcp_save_data.PNG)
+![gbq_image](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcp_save_data.PNG)
 
 ## GPT-2 fine-tuning
 
@@ -84,13 +84,13 @@ docker push gcr.io/[PROJECT-ID]/gpt2
 
 The end result should look like this:
 
-![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcr_sample.png)
+![image_of_gcr](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/gcr_sample.png)
 
 ### Deploy the container
 
 Once the image is uploaded you can head to [Google Cloud Console](https://console.cloud.google.com/run?project=yta-gpt2&folder=&organizationId=) to deploy it. Click on **Create Service** and follow the instructions. **Remember to set Memory Allocated to 2 GB and Maximum Requests Per Container to 1!**. You should see a success prompt shortly. You can explore the console further yourself.
 
-![alt text](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/Deployed_container_sample.png)
+![image_of_container](https://github.com/addadda023/GPT-2-text-generation/blob/master/images/Deployed_container_sample.png)
 
 Congratulations! You just deployed the model. 
 
