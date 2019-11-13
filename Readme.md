@@ -69,7 +69,7 @@ If you want to test the image locally with the same specs as Cloud Run, you can 
 docker run -p 8080:8080 --memory="2g" --cpus="1" gpt2
 ```
 
-If it runs successfully you can then visit/curl `http://0.0.0.0:8080` to get generated text!
+If it runs successfully you can then visit/curl `http://0.0.0.0:8080` to get generated text! Note that 0.0.0.0:8080 is also the port the Google cloud container listens to when deployed.
 
 ### Upload the image to Google Container Registry
 
@@ -96,4 +96,16 @@ Congratulations! You just deployed the model.
 
 ### Interacting with the api
 
-The api serves GET & POST requests over HTTP and returns a JSON object with a text attribute that contains the generated text. Say the cloud run app url is 
+The api serves GET & POST requests over HTTP and returns a JSON object with a text attribute that contains the generated text. Say the cloud run app url is `comment-generator.run.app`. A `GET` request to the API would be `http://comment-generator.run.app?length=100&temperature=1.0` which can be accessed by almost any type of client. Go ahead and try in your client or browser.
+
+A `POST` request (passing the data as a JSON object) is more ideal as it is both more secure and allows non-ASCII inputs. 
+
+Python example:
+```
+import requests
+
+req = requests.post('http://comment-generator.run.app',
+                    json={'length': 100, 'temperature': 1.0})
+text = req.json()['text']
+print(text)
+```
