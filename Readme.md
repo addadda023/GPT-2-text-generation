@@ -109,3 +109,12 @@ req = requests.post('http://comment-generator.run.app',
 text = req.json()['text']
 print(text)
 ```
+Feel free to modify the `app_ui.html` file provided in the docker repository to suit your needs. It utilizes AJAX POST requests via jQuery to retrieve the generated text and parse the data for display.
+
+## Some notes
+
+* Due to Cloud Run's current 2 GB memory maximum, this app will only work with the 117M "small" GPT-2 model, and not the 345M "medium" model (even if Cloud Run offers a 4 GB option in the future, it would not be enough to support the 345M model).
+* Each prediction, at the default 1023 token length, will take about 2 minutes to generate (10 seconds per 100 tokens). You may want to consider reducing the length of the generated text if speed is a concern and/or hardcapping the length at the app-level.
+* If your API on Cloud Run is actively processing a request less than 7% of the time (at the 100 millisecond level) in a given month, you'll stay within the free tier of Cloud Run, and the price is $0.10 an hour if the service goes over the free tier. Only the time starting up an instance and processing a request counts as billable time (i.e. the durations in the logs); idle time does not count as billable, making it surprisingly easy to stay within the limits.
+* The concurrency is set to 1 to ensure maximum utilization for each user (if a single user is using it and accidently causes another container to spawn, it doesn't matter cost-wise as only requests processing incurs charges, not the number of active containers).
+* Memory leaks in the container may cause you to go over the 2GB limit and crash the container after enough text generations. Fortunately, Cloud Run can quickly recover (although the current request will fail), and having multiple containers operating due to low concurrency can distribute the workload.
