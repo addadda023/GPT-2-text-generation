@@ -49,7 +49,7 @@ Notice the average loss of the model when training. It is easy to **overfit**. Y
 
 You have fine tuned GPT-2 using your text. That's great! But how do to host/deploy it? Many AI tutorials often show how to deploy a small model to a web service by using [Flask](https://www.fullstackpython.com/flask.html). The problem with GPT-2 is that it’s such a huge model that most conventional wisdom won't work well to get a performant app. Even if you do get it to run fast (e.g. by running the app on a GPU), it won’t be cheap, specially if there is a surge of requests.
 
-One of the options for deployment is Google Cloud Run. Its a managed compute platform that automatically scales stateless containers. Cloud Run only charges for compute used *(effectively free)* and can scale indefinitely if there’s a traffic surge. Max Woolf has created a nice [package](https://github.com/minimaxir/gpt-2-cloud-run) to get started with this really easily. The end result is an app that can be used easily and cost-effectively to allow others to play with a finetuned GPT-2 model on another dataset, and allow programmatic access to the generated text. Check my sample [here](https://addadda023.github.io/). Note that the deployed api itself doesn't provide a HTML frontend, but there are frontend templates to help you with that.
+One of the options for deployment is Google Cloud Run. Its a managed compute platform that automatically scales stateless containers. Cloud Run only charges for compute used *(effectively free)* and can scale indefinitely if there’s a traffic surge. Max Woolf has created a nice [package](https://github.com/minimaxir/gpt-2-cloud-run) to get started with this really easily. The end result is an app that can be used easily and cost-effectively to allow others to play with a finetuned GPT-2 model on another dataset, and allow programmatic access to the generated text. Check my sample [here](https://addadda023.github.io/GPT-2-text-generation/). Note that the deployed api itself doesn't provide a HTML frontend, but there are frontend templates to help you with that.
 
 ### Building a docker container
 
@@ -109,7 +109,7 @@ req = requests.post('http://comment-generator.run.app',
 text = req.json()['text']
 print(text)
 ```
-Feel free to modify the `app_ui.html` file provided in the docker repository to suit your needs. It utilizes AJAX POST requests via jQuery to retrieve the generated text and parse the data for display. Check my example [here](http://addadda023.github.io/).
+Feel free to modify the `app_ui.html` file provided in the docker repository to suit your needs. It utilizes AJAX POST requests via jQuery to retrieve the generated text and parse the data for display. Check my example [here](https://addadda023.github.io/GPT-2-text-generation/).
 
 ## Some notes
 
